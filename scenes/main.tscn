@@ -1,0 +1,47 @@
+[gd_scene load_steps=7 format=3 uid="uid://cf5l6sxpfcxt"]
+
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_gcclh"]
+[ext_resource type="Texture2D" uid="uid://cyo6yoav5x1pr" path="res://Fred détouré.png" id="2_4bcfm"]
+[ext_resource type="PackedScene" uid="uid://c6u66bke3srh7" path="res://scenes/player.tscn" id="2_7tjlq"]
+[ext_resource type="PackedScene" uid="uid://d4ca5mjgqe568" path="res://scenes/camera_support.tscn" id="4_p6wwd"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_1efte"]
+size = Vector3(0.1, 0.1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_88bgl"]
+albedo_texture = ExtResource("2_4bcfm")
+texture_filter = 0
+
+[node name="Main" type="Node3D"]
+script = ExtResource("1_gcclh")
+cooldown = 2.0
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
+use_collision = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.790649, 0)
+size = Vector3(29.3904, 1.6687, 42.4317)
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0381997, -17)
+operation = 2
+radius = 0.854215
+
+[node name="Player" parent="." instance=ExtResource("2_7tjlq")]
+
+[node name="BallDirection" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.13685, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="BallDirection"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
+mesh = SubResource("BoxMesh_1efte")
+surface_material_override/0 = SubResource("StandardMaterial3D_88bgl")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, -3, 0, 0)
+light_energy = 2.0
+shadow_enabled = true
+
+[node name="CameraSupport" parent="." node_paths=PackedStringArray("target") instance=ExtResource("4_p6wwd")]
+target = NodePath("../Player")
