@@ -1,5 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://cf5l6sxpfcxt"]
+[gd_scene load_steps=8 format=3 uid="uid://cf5l6sxpfcxt"]
 
+[ext_resource type="Script" path="res://scripts/UI.gd" id="1_4eg21"]
 [ext_resource type="Texture2D" uid="uid://cyo6yoav5x1pr" path="res://Fred détouré.png" id="2_4bcfm"]
 [ext_resource type="Script" path="res://scripts/BallDirection.gd" id="2_6riip"]
 [ext_resource type="PackedScene" uid="uid://c6u66bke3srh7" path="res://scenes/player.tscn" id="2_7tjlq"]
@@ -19,12 +20,17 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+script = ExtResource("1_4eg21")
 
-[node name="PowerUi" type="ColorRect" parent="Control"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-color = Color(0.862745, 0.12549, 0, 1)
+[node name="CanvasLayer" type="CanvasLayer" parent="Control"]
+
+[node name="ProgressBar" type="ProgressBar" parent="Control/CanvasLayer"]
+offset_left = 19.0
+offset_top = 475.0
+offset_right = 60.0
+offset_bottom = 698.0
+fill_mode = 3
+show_percentage = false
 
 [node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
 use_collision = true
@@ -40,8 +46,8 @@ radius = 0.854215
 
 [node name="Player" parent="." node_paths=PackedStringArray("camera_support") instance=ExtResource("2_7tjlq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.64288, 0)
-max_force = 10.0
 accumulation_speed = 5.0
+max_accumulation_speed = 8.0
 slow_down_force = 0.5
 cooldown = 2.0
 camera_support = NodePath("../CameraSupport")
@@ -63,3 +69,6 @@ shadow_enabled = true
 
 [node name="CameraSupport" parent="." node_paths=PackedStringArray("target") instance=ExtResource("4_p6wwd")]
 target = NodePath("../Player")
+
+[connection signal="accumulation_force_changed" from="Player" to="Control" method="_on_player_accumulation_force_changed"]
+[connection signal="accumulation_force_dropped" from="Player" to="Control" method="_on_player_accumulation_force_dropped"]
