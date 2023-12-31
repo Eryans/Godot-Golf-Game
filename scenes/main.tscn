@@ -1,10 +1,20 @@
-[gd_scene load_steps=8 format=3 uid="uid://cf5l6sxpfcxt"]
+[gd_scene load_steps=12 format=3 uid="uid://cf5l6sxpfcxt"]
 
 [ext_resource type="Script" path="res://scripts/UI.gd" id="1_4eg21"]
 [ext_resource type="Texture2D" uid="uid://cyo6yoav5x1pr" path="res://Fred détouré.png" id="2_4bcfm"]
 [ext_resource type="Script" path="res://scripts/BallDirection.gd" id="2_6riip"]
 [ext_resource type="PackedScene" uid="uid://c6u66bke3srh7" path="res://scenes/player.tscn" id="2_7tjlq"]
 [ext_resource type="PackedScene" uid="uid://d4ca5mjgqe568" path="res://scenes/camera_support.tscn" id="4_p6wwd"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_740dh"]
+bounce = 0.25
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ntfn6"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_mvmyl"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sb7sl"]
+albedo_texture = ExtResource("2_4bcfm")
 
 [sub_resource type="BoxMesh" id="BoxMesh_1efte"]
 size = Vector3(0.1, 0.1, 1)
@@ -43,6 +53,53 @@ size = Vector3(29.3904, 1.6687, 42.4317)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0381997, -17)
 operation = 2
 radius = 0.854215
+
+[node name="RigidBody3D" type="RigidBody3D" parent="CSGCombiner3D"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.311502, 7.666, 9.64331)
+mass = 5.0
+physics_material_override = SubResource("PhysicsMaterial_740dh")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CSGCombiner3D/RigidBody3D"]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
+shape = SubResource("BoxShape3D_ntfn6")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CSGCombiner3D/RigidBody3D"]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
+mesh = SubResource("BoxMesh_mvmyl")
+surface_material_override/0 = SubResource("StandardMaterial3D_sb7sl")
+
+[node name="RigidBody3D2" type="RigidBody3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.21111, 3.25519, 8.01032)
+mass = 0.1
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CSGCombiner3D/RigidBody3D2"]
+shape = SubResource("BoxShape3D_ntfn6")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CSGCombiner3D/RigidBody3D2"]
+mesh = SubResource("BoxMesh_mvmyl")
+surface_material_override/0 = SubResource("StandardMaterial3D_sb7sl")
+
+[node name="RigidBody3D3" type="RigidBody3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1407, 3.65837, 4.35976)
+mass = 0.1
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CSGCombiner3D/RigidBody3D3"]
+shape = SubResource("BoxShape3D_ntfn6")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CSGCombiner3D/RigidBody3D3"]
+mesh = SubResource("BoxMesh_mvmyl")
+surface_material_override/0 = SubResource("StandardMaterial3D_sb7sl")
+
+[node name="RigidBody3D4" type="RigidBody3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.74275, 6.74947, 5.27362)
+mass = 0.1
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CSGCombiner3D/RigidBody3D4"]
+shape = SubResource("BoxShape3D_ntfn6")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CSGCombiner3D/RigidBody3D4"]
+mesh = SubResource("BoxMesh_mvmyl")
+surface_material_override/0 = SubResource("StandardMaterial3D_sb7sl")
 
 [node name="Player" parent="." node_paths=PackedStringArray("camera_support") instance=ExtResource("2_7tjlq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.64288, 0)

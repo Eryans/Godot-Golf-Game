@@ -70,6 +70,7 @@ func _physics_process(delta: float) -> void:
 			if accumulation_force >= player_data.max_force:
 				accumulation_force = player_data.max_force
 			accumulation_force_changed.emit(accumulation_force)
+
 		if Input.is_action_just_released("ui_accept"):
 			accumulation_force_dropped.emit()
 			var impulse_strength: float = accumulation_force
@@ -77,8 +78,18 @@ func _physics_process(delta: float) -> void:
 			can_shoot = false
 			timer.start()
 			accumulation_force = 0
-	if Input.is_action_pressed("slow_down") && floor(linear_velocity.length()) > 0:
-		apply_central_impulse(-linear_velocity * (slow_down_force * delta))
+
+	var horizontal_velocity = linear_velocity
+	horizontal_velocity.y = 0  # Annule la composante Y pour conserver l'effet de la gravité
+
+	if Input.is_action_pressed("slow_down") && horizontal_velocity.length() > 0:
+		apply_central_impulse(-horizontal_velocity * (slow_down_force * delta))
+		# Vérifiez si la vitesse horizontale est presque nulle
+		if horizontal_velocity.length() < 1:
+			horizontal_velocity = Vector3.ZERO
+			linear_velocity.x = 0
+			linear_velocity.z = 0  # Annule les composantes X et Z, mais conserve la composante Y
+
 
 
 func on_timer_timeout() -> void:
