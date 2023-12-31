@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://cf5l6sxpfcxt"]
 
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_gcclh"]
 [ext_resource type="Texture2D" uid="uid://cyo6yoav5x1pr" path="res://Fred détouré.png" id="2_4bcfm"]
-[ext_resource type="Script" path="res://scripts/BallDirection.gd" id="2_6riip"]
 [ext_resource type="PackedScene" uid="uid://c6u66bke3srh7" path="res://scenes/player.tscn" id="2_7tjlq"]
 [ext_resource type="PackedScene" uid="uid://d4ca5mjgqe568" path="res://scenes/camera_support.tscn" id="4_p6wwd"]
 
@@ -13,6 +13,7 @@ albedo_texture = ExtResource("2_4bcfm")
 texture_filter = 0
 
 [node name="Main" type="Node3D"]
+script = ExtResource("1_gcclh")
 
 [node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
 use_collision = true
@@ -26,15 +27,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0381997, -17)
 operation = 2
 radius = 0.854215
 
-[node name="Player" parent="." node_paths=PackedStringArray("camera_support") instance=ExtResource("2_7tjlq")]
-force = 30.0
-cooldown = 2.0
-camera_support = NodePath("../CameraSupport")
+[node name="Player" parent="." instance=ExtResource("2_7tjlq")]
 
-[node name="BallDirection" type="Node3D" parent="." node_paths=PackedStringArray("target")]
+[node name="BallDirection" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.13685, 0)
-script = ExtResource("2_6riip")
-target = NodePath("../Player")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="BallDirection"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
