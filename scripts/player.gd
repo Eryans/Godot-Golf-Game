@@ -5,7 +5,9 @@ class_name Player
 @onready var ball_vertical_dir: float = 5.0
 @onready var ball_horizontal_dir: float = -5.0
 
-@export var force: float = 15.0
+@export var max_force: float = 5.0
+@export var accumulation_speed: float = 2.0
+@export var slow_down_force: float = 2.0
 @export var cooldown: float = 1.5
 @export var camera_support: CameraSupport
 
@@ -16,13 +18,14 @@ var emission_speed: float = 25.0  # Speed of emission change
 var can_shoot: bool = true
 var timer: Timer
 var direction: Vector3
+var accumulation_force: float = 0
 
 
 func _ready():
 	if mesh.get_surface_override_material(0) is StandardMaterial3D:
 		material = mesh.get_surface_override_material(0) as StandardMaterial3D
 	else:
-		print("Le mat�riau n'est pas un StandardMaterial3D")
+		print("Material is not StandardMaterial3D")
 	timer = Timer.new()
 	add_child(timer)
 	timer.wait_time = cooldown
@@ -49,19 +52,27 @@ func _process(delta: float) -> void:
 
 func _physics_process(delta: float) -> void:
 	direction = (
-		(
-			camera_support.global_transform.basis
-			* Vector3(0, clamp(ball_vertical_dir, -2, 15), clamp(ball_horizontal_dir, -5, 5))
+		camera_support.global_transform.basis
+		* (
+			Vector3(0, clamp(ball_vertical_dir, -2, 15), clamp(ball_horizontal_dir, -5, 5))
+			. normalized()
 		)
-		. normalized()
 	)
 
 	if can_shoot:
-		if Input.is_action_just_pressed("ui_accept"):
-			var impulse_strength: float = force * delta
+		if Input.is_action_pressed("ui_accept"):
+			accumulation_force = clamp(
+				accumulation_force + delta * accumulation_speed, 0, max_force
+			)
+		if Input.is_action_just_released("ui_accept"):
+			var impulse_strength: float = accumulation_force
 			apply_central_impulse(direction * impulse_strength)
 			can_shoot = false
 			timer.start()
+			accumulation_force = 0
+	if Input.is_action_pressed("slow_down") && floor(linear_velocity.length()) > 0:
+		apply_central_impulse(-linear_velocity * (slow_down_force * delta))
+
 
 
 func on_timer_timeout() -> void:

@@ -14,6 +14,18 @@ texture_filter = 0
 
 [node name="Main" type="Node3D"]
 
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="PowerUi" type="ColorRect" parent="Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+color = Color(0.862745, 0.12549, 0, 1)
+
 [node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
 use_collision = true
 
@@ -28,7 +40,9 @@ radius = 0.854215
 
 [node name="Player" parent="." node_paths=PackedStringArray("camera_support") instance=ExtResource("2_7tjlq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.64288, 0)
-force = 30.0
+max_force = 10.0
+accumulation_speed = 5.0
+slow_down_force = 0.5
 cooldown = 2.0
 camera_support = NodePath("../CameraSupport")
 
