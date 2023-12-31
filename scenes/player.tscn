@@ -19,7 +19,6 @@ texture_filter = 0
 [sub_resource type="SphereShape3D" id="SphereShape3D_rurnq"]
 
 [node name="Player" type="RigidBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.13685, 0)
 mass = 0.05
 physics_material_override = SubResource("PhysicsMaterial_7orr0")
 script = ExtResource("1_lw6x8")

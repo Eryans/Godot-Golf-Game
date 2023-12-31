@@ -27,6 +27,7 @@ operation = 2
 radius = 0.854215
 
 [node name="Player" parent="." node_paths=PackedStringArray("camera_support") instance=ExtResource("2_7tjlq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.64288, 0)
 force = 30.0
 cooldown = 2.0
 camera_support = NodePath("../CameraSupport")
