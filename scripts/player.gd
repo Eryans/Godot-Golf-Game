@@ -77,7 +77,7 @@ func _physics_process(delta: float) -> void:
 	horizontal_velocity.y = 0  # Annule la composante Y pour conserver l'effet de la gravité
 
 	if Input.is_action_pressed("slow_down") && horizontal_velocity.length() > 0:
-		apply_central_impulse(-horizontal_velocity * (slow_down_force * delta))
+		apply_central_impulse(-horizontal_velocity * slow_down_force * delta)
 		# Vérifiez si la vitesse horizontale est presque nulle
 		if horizontal_velocity.length() < 1:
 			horizontal_velocity = Vector3.ZERO

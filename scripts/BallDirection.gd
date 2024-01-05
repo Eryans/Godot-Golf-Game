@@ -3,22 +3,23 @@ class_name BallDirection
 
 @export var target: Player
 
-const ROTATION_SPEED = 0.05
+const ROTATION_SPEED = 2.5
 
 var rot_x = 0
 var rot_y = 0
 
 func _process(delta):
 	global_transform.origin = target.global_transform.origin
+	var rotation_speed_delta:float = ROTATION_SPEED * delta 
 	# Modifier la rotation accumulée en fonction des touches du clavier
 	if Input.is_action_pressed("ui_left"):
-		rot_y += ROTATION_SPEED
+		rot_y += rotation_speed_delta
 	if Input.is_action_pressed("ui_right"):
-		rot_y -= ROTATION_SPEED
+		rot_y -= rotation_speed_delta
 	if Input.is_action_pressed("ui_up"):
-		rot_x += ROTATION_SPEED
+		rot_x += rotation_speed_delta
 	if Input.is_action_pressed("ui_down"):
-		rot_x -= ROTATION_SPEED
+		rot_x -= rotation_speed_delta
 
 	# Appliquer la rotation
 	transform.basis = Basis()  # Réinitialiser la rotation
