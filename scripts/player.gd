@@ -10,7 +10,7 @@ class_name Player
 @export var max_accumulation_speed: float = 10.0
 @export var slow_down_force: float = 2.0
 @export var cooldown: float = 1.5
-@export var camera_support: CameraSupport
+@export var ball_director: BallDirection
 
 var refill_light: bool = true
 var material: StandardMaterial3D
@@ -56,13 +56,7 @@ func _process(delta: float) -> void:
 
 
 func _physics_process(delta: float) -> void:
-	direction = (
-		camera_support.global_transform.basis
-		* (
-			Vector3(0, clamp(ball_vertical_dir, -2, 15), clamp(ball_horizontal_dir, -5, 5))
-			. normalized()
-		)
-	)
+	direction = -ball_director.global_transform.basis.z.normalized()
 
 	if can_shoot:
 		if Input.is_action_pressed("ui_accept"):
