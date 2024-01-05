@@ -1,6 +1,7 @@
 extends Control
 
 @onready var power_ui_indicator: ProgressBar = $CanvasLayer/ProgressBar
+@onready var win_text_label: Label = $CanvasLayer/Label
 @onready var player_data = GameData.player_data
 
 var drop: bool = false
@@ -19,3 +20,7 @@ func _process(delta: float):
 
 func _on_player_accumulation_force_dropped():
 	drop = true
+
+
+func _on_win_zone_player_entered_zone():
+	win_text_label.visible = true

@@ -13,7 +13,7 @@ bounce = 0.5
 albedo_texture = ExtResource("1_2dtbb")
 emission_enabled = true
 emission = Color(0, 0.521569, 0.823529, 1)
-emission_energy_multiplier = 5.0
+emission_energy_multiplier = 0.0
 texture_filter = 0
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_rurnq"]

@@ -4,13 +4,11 @@
 
 [sub_resource type="SeparationRayShape3D" id="SeparationRayShape3D_pg7fr"]
 
-[node name="CameraSupport" type="Node3D" node_paths=PackedStringArray("target")]
+[node name="CameraSupport" type="Node3D"]
 script = ExtResource("1_odhhu")
-target = NodePath("")
 
 [node name="SpringArm3D" type="SpringArm3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.921667, 0.387982, 0, -0.387982, 0.921667, 0, 0, 0)
-collision_mask = 0
 shape = SubResource("SeparationRayShape3D_pg7fr")
 spring_length = 5.0
 margin = 1.0

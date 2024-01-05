@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cob1a71lg06cp"]
+
+[ext_resource type="Script" path="res://scripts/WinZone.gd" id="1_rlu7v"]
+
+[node name="WinZone" type="Area3D"]
+script = ExtResource("1_rlu7v")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
