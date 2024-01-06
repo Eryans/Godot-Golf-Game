@@ -86,18 +86,6 @@ operation = 2
 radius = 0.854215
 material = SubResource("StandardMaterial3D_6nvpg")
 
-[node name="CSGBox3D2" type="CSGBox3D" parent="Level"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00405884, 5.67101, -10.4799)
-use_collision = true
-size = Vector3(29.4341, 15, 2.04016)
-material = SubResource("StandardMaterial3D_6nvpg")
-
-[node name="CSGBox3D5" type="CSGBox3D" parent="Level"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00405884, 5.67101, 20.2774)
-use_collision = true
-size = Vector3(29.4341, 15, 2.04016)
-material = SubResource("StandardMaterial3D_6nvpg")
-
 [node name="CSGBox3D6" type="CSGBox3D" parent="Level"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.13323, 1.52851, 9.10526)
 use_collision = true
@@ -169,18 +157,6 @@ material = SubResource("StandardMaterial3D_6nvpg")
 transform = Transform3D(1, 0, 0, 0, 0.357895, -0.933762, 0, 0.933762, 0.357895, -10.5069, -0.219042, 4.22608)
 use_collision = true
 size = Vector3(4.57594, 8.60109, 3.67851)
-material = SubResource("StandardMaterial3D_6nvpg")
-
-[node name="CSGBox3D3" type="CSGBox3D" parent="Level"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -13.6158, 5.67101, 5.69903)
-use_collision = true
-size = Vector3(31.0779, 15, 2.04016)
-material = SubResource("StandardMaterial3D_6nvpg")
-
-[node name="CSGBox3D4" type="CSGBox3D" parent="Level"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 13.7524, 5.67101, 5.69903)
-use_collision = true
-size = Vector3(31.0779, 15, 2.04016)
 material = SubResource("StandardMaterial3D_6nvpg")
 
 [node name="WinZone" parent="Level" instance=ExtResource("7_g23uq")]
