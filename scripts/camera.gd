@@ -5,7 +5,7 @@ class_name CameraSupport
 
 var rot_x = 0
 var rot_y = 0
-var mouse_sensitivity = 0.005 # Adjust as needed
+var mouse_sensitivity = 0.0025 # Adjust as needed
 
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED

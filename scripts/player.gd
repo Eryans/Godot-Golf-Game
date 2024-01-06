@@ -2,8 +2,6 @@ extends RigidBody3D
 class_name Player
 
 @onready var mesh: MeshInstance3D = $MeshInstance3D
-@onready var ball_vertical_dir: float = 5.0
-@onready var ball_horizontal_dir: float = -5.0
 @onready var player_data = GameData.player_data
 
 @export var accumulation_speed: float = 2.0
@@ -39,10 +37,7 @@ func _ready():
 
 
 func _process(delta: float) -> void:
-	if Input.is_action_pressed("ui_up"):
-		ball_vertical_dir += 10 * delta
-	elif Input.is_action_pressed("ui_down"):
-		ball_vertical_dir -= 10 * delta
+
 	refill_light = can_shoot
 	if material:
 		var current_emission_strength: float = material.emission_energy_multiplier

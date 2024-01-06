@@ -5,11 +5,11 @@
 [ext_resource type="Texture2D" uid="uid://cyo6yoav5x1pr" path="res://Fred détouré.png" id="2_4bcfm"]
 [ext_resource type="Script" path="res://scripts/BallDirection.gd" id="2_6riip"]
 [ext_resource type="PackedScene" uid="uid://c6u66bke3srh7" path="res://scenes/player.tscn" id="2_7tjlq"]
-[ext_resource type="PackedScene" path="res://fred_box.tscn" id="3_em33y"]
+[ext_resource type="PackedScene" uid="uid://bno8dbggi33vm" path="res://fred_box.tscn" id="3_em33y"]
 [ext_resource type="PackedScene" uid="uid://d4ca5mjgqe568" path="res://scenes/camera_support.tscn" id="4_p6wwd"]
 [ext_resource type="Texture2D" uid="uid://c7gurjt4ioaa0" path="res://Assets/Name_1m x 1m(1).png" id="4_uxap3"]
 [ext_resource type="Texture2D" uid="uid://d20filg14676c" path="res://Assets/Name_1m x 1m.png" id="4_yamqc"]
-[ext_resource type="PackedScene" path="res://scenes/win_zone.tscn" id="7_g23uq"]
+[ext_resource type="PackedScene" uid="uid://cob1a71lg06cp" path="res://scenes/win_zone.tscn" id="7_g23uq"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lp8v7"]
 albedo_texture = ExtResource("4_uxap3")
