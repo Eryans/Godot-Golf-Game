@@ -21,8 +21,8 @@ func _process(delta):
 	if Input.is_action_pressed("ui_down"):
 		rot_x -= rotation_speed_delta
 	
-	var max_vertical_angle = PI/3  # Angle maximum en radians, exemple 45 degrés
-	var min_vertical_angle = -PI/10 # Angle minimum en radians, exemple -45 degrés
+	var max_vertical_angle = PI/10 
+	var min_vertical_angle = -PI/3 
 	rot_x = clamp(rot_x, min_vertical_angle, max_vertical_angle)
 
 	# Appliquer la rotation
