@@ -236,5 +236,5 @@ shape = SubResource("BoxShape3D_q12s2")
 
 [connection signal="player_entered_zone" from="Level/WinZone" to="Control" method="_on_win_zone_player_entered_zone"]
 [connection signal="accumulation_force_changed" from="Player" to="Control" method="_on_player_accumulation_force_changed"]
-[connection signal="accumulation_force_dropped" from="Player" to="Control" method="_on_player_accumulation_force_dropped"]
+[connection signal="input_event" from="Player" to="Player" method="_on_input_event"]
 [connection signal="body_entered" from="RestartZone" to="RestartZone" method="_on_body_entered"]
